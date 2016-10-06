@@ -56,7 +56,7 @@ search-index-solr:
   build: docker/solr/
 #  container_name: search-index-solr.local
   volumes: 
-    - ./anant/appleseed-search/solr:/opt/solr/example/solr
+    - ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
 #  volumes_from:
 #    - storage
   environment:
