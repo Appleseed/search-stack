@@ -1,19 +1,11 @@
-#++++++++++++++++++++++++++++++++++++++
-# dotnet Docker container
-#++++++++++++++++++++++++++++++++++++++
-#
-# Official images:
-#
-#   dotnet - official dotnet core
-#                   https://hub.docker.com/r/microsoft/aspnet/
-#
-#++++++++++++++++++++++++++++++++++++++
-
-FROM microsoft/aspnet
-
-COPY . /app
+FROM microsoft/dotnet:latest
+COPY ./app /app
 WORKDIR /app
-RUN ["dnu", "restore"]
-
-EXPOSE 5005
-ENTRYPOINT ["dnx", "-p", "project.json", "kestrel"]
+ 
+RUN ["dotnet", "restore"]
+#RUN ["dotnet", "build"]
+ 
+EXPOSE 5000/tcp
+ENV ASPNETCORE_URLS http://*:5000
+ 
+ENTRYPOINT ["dotnet", "run"]
