@@ -15,19 +15,22 @@ Other than the components which are part of the Search stack, this stack leverag
 
 Search Platform External Components :
 
+- DONE: Solr (using 4.10.4, for solr index endpoint)
+- DONE: Elasticsearch (using latest, for elastic index endpoint)
+- DONE: busybox (latest, for storage of configuration)
+- DONE: dotnet (latest, for running .net core code )
+
+- TODO: jdk (disabled, for running java/scala code)
+- TODO: mono (disabled, for running .net pre core code)
+
 - TODO: Nginx or Apache HTTPd (to serve Single page apps )
+
 - TODO: MySQL, MariaDB or PerconaDB (disabled, for internal needs, tests)
 - TODO: PostgreSQL (disabled, for internal needs, tests)
-- TODO: Solr (disabled, for solr index endpoint)
-- TODO: Elasticsearch (disabled, for elastic index endpoint)
 - TODO: Redis (disabled, for internal needs, tests)
 - TODO: Memcached (disabled, for internal needs, tests)
 - TODO: RabbitMQ (disabled, for internal needs)
 - TODO: MongoDB (disabled, for internal needs)
-- TODO: busybox (disabled, for storage of configuration)
-- TODO: mono (disabled, for running .net pre core code)
-- TODO: aspnet (disabled, for running .net core code )
-- TODO: jdk (disabled, for running java/scala code)
 
 This stack's design was informed by [Docker best practices](https://docs.docker.com/articles/dockerfile_best-practices/) and by other 
 projects such as [php-boilerplate-docker](https://github.com/webdevops/php-docker-boilerplate/) , [ckan-docker](https://github.com/ckan/ckan-docker/) ,
