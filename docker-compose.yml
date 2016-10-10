@@ -1,16 +1,9 @@
 #######################################
-#  application Docker container
-#
-# for this container you have to remove
-# following entries from .dockerignore:
-#
-# etc/*
-# provision/*
-# app/*
-#
+#  Appleseed.Search.App 
+#  Currently just a test app 
 #######################################
 search-app:
-  build: docker/dotnet
+  build: docker/dotnet/
   links:
     #- mysql
     #- postgres
@@ -21,15 +14,34 @@ search-app:
     #- memcached
     #- ftp
   ports:
-    - "8000:80"
-    - "8443:443"
-    - "10022:22"
+    - "5000:5000"
   volumes_from:
     - storage
   env_file:
     - etc/environment.yml
     - etc/environment.production.yml
 
+
+#######################################
+# Appleseed.Search IndexService
+#######################################
+search-engine:
+  build: docker/mono/
+  links:
+    #- mysql
+    #- postgres
+    #- mail
+    - search-index-solr
+    - search-index-elastic
+    #- redis
+    #- memcached
+    #- ftp
+  entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 
+  volumes_from:
+    - storage
+  env_file:
+    - etc/environment.yml
+    - etc/environment.production.yml
 
 #######################################
 # Proxy server / Load Balancer
@@ -41,7 +53,6 @@ search-app-proxy:
     - storage
   ports:
     - "80:80"
-    - "443:443"
   links:
     - search-app
 
@@ -78,7 +89,8 @@ search-index-elastic:
   env_file:
     - etc/environment.yml
     - etc/environment.production.yml
-
+  ports: 
+    - "9200:9200"
 
 #######################################
 # Storage
