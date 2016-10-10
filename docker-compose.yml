@@ -36,7 +36,7 @@ search-engine:
     #- redis
     #- memcached
     #- ftp
-  entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 
+  entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 --timeout=30 --strict 
   volumes_from:
     - storage
   env_file:
