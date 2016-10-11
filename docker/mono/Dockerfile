@@ -1,5 +1,7 @@
 FROM mono:latest
 
+MAINTAINER Rahul Singh <rahul.singh@anant.us>
+
 RUN apt-get update -qq \
 && apt-get install -y wget unzip
 
@@ -19,7 +21,8 @@ RUN cd /tmp \
 && rm -f IndexService.zip \
 && rm -rf Release
 
-#copy the config from the search-stack to the docker
+#TODO mount this from a local file 
+#copy the config from the search-stack to the docker - should really mount from a local file 
 COPY ./engine.config /Services/Appleseed.Search/Index.Service/Appleseed.Services.Search.Console.exe.config
 
 #copy the wait for it command to be used by compose if needed 

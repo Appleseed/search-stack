@@ -36,7 +36,7 @@ search-engine:
     #- redis
     #- memcached
     #- ftp
-  entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 --timeout=30 --strict 
+  entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 --timeout=60 --strict -- mono ./Appleseed.Services.Search.Console.exe 
   volumes_from:
     - storage
   env_file:
@@ -66,10 +66,11 @@ search-app-proxy:
 search-index-solr:
   build: docker/solr/
 #  container_name: search-index-solr.local
-  volumes: 
-    - ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
-#  volumes_from:
-#    - storage
+# TODO: load from persistent storage -- maybe using Glsuter or other
+#  volumes: 
+#    - ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
+  volumes_from:
+    - storage
   environment:
     - SOLR_STORAGE=/storage/solr/appleseed-public/
   env_file:
@@ -77,6 +78,7 @@ search-index-solr:
     - etc/environment.production.yml
   ports:
     - "8983:8983"
+
 
 #######################################
 # Elasticsearch
