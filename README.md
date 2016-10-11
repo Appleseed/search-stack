@@ -1,6 +1,18 @@
 
 This is a containerized stack for Appleseed Search Platform ( part of the Appleseed Framework ). 
 
+Quickstart :
+
+Assuming you have docker-machine, docker, and docker-compose installed properly. You can get this stack running 
+in about an minute or less. 
+
+- `git clone https://github.com/Appleseed/search-stack`
+- `cd search-stack`
+- `docker-compose build`
+- `docker-compose up`
+
+
+
 Search Platform Internal Components :
 
 - TODO: Appleseed.Search.Web.User.Ng.Solr (will be pulled from release)
