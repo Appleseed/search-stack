@@ -1,7 +1,7 @@
 
 This is a containerized stack for Appleseed Search Platform ( part of the Appleseed Framework ). 
 
-Quickstart :
+#Quickstart :#
 
 Assuming you have docker-machine, docker, and docker-compose installed properly. You can get this stack running 
 in about an minute or less. 
@@ -11,9 +11,7 @@ in about an minute or less.
 - `docker-compose build`
 - `docker-compose up`
 
-
-
-Search Platform Internal Components :
+##Search Platform Internal Components :##
 
 - TODO: Appleseed.Search.Web.User.Ng.Solr (will be pulled from release)
 - TODO: Appleseed.Search.Web.User.Ng.Elastic (will be pulled from release)
@@ -25,18 +23,23 @@ Search Platform Internal Components :
 
 Other than the components which are part of the Search stack, this stack leverages out of the box containers that are widely available. 
 
-Search Platform External Components :
+##Search Platform External Components :##
 
+###Indexes (Solr, Elastic, Lucene)###
 - DONE: Solr (using 4.10.4, for solr index endpoint)
 - DONE: Elasticsearch (using latest, for elastic index endpoint)
 - DONE: busybox (latest, for storage of configuration)
+
+###Web App ###
 - DONE: dotnet (latest, for running .net core code )
-
-- TODO: jdk (disabled, for running java/scala code)
-- TODO: mono (disabled, for running .net pre core code)
-
+- TODO: nodejs (latest, for SPA apps, or lightweight proxies)
 - TODO: Nginx or Apache HTTPd (to serve Single page apps )
 
+### Engine ###
+- TODO: jdk (disabled, for running java/scala code)
+- DONE: mono (disabled, for running .net pre core code)
+
+### Databases / Queues ###
 - TODO: MySQL, MariaDB or PerconaDB (disabled, for internal needs, tests)
 - TODO: PostgreSQL (disabled, for internal needs, tests)
 - TODO: Redis (disabled, for internal needs, tests)
