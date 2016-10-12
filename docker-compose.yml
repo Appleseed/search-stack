@@ -67,8 +67,8 @@ search-index-solr:
   build: docker/solr/
 #  container_name: search-index-solr.local
 # TODO: load from persistent storage -- maybe using Glsuter or other
-#  volumes: 
-#    - ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
+  volumes: 
+    - ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
   volumes_from:
     - storage
   environment:
