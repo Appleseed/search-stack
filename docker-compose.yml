@@ -2,108 +2,114 @@
 #  Appleseed.Search.App 
 #  Currently just a test app 
 #######################################
-search-app:
-  build: docker/dotnet/
-  links:
-    #- mysql
-    #- postgres
-    #- mail
-    - search-index-solr
-    - search-index-elastic
-    #- redis
-    #- memcached
-    #- ftp
-  ports:
-    - "5000:5000"
-  volumes_from:
-    - storage
-  env_file:
-    - etc/environment.yml
-    - etc/environment.production.yml
+version: '2'
+services: 
+    search-app:
+      build: docker/dotnet/
+      links:
+        #- mysql
+        #- postgres
+        #- mail
+        - search-index-solr
+        - search-index-elastic
+        #- redis
+        #- memcached
+        #- ftp
+      ports:
+        - "5000:5000"
+      volumes_from:
+        - storage
+      env_file:
+        - etc/environment.yml
+        - etc/environment.production.yml
 
 
-#######################################
-# Appleseed.Search IndexService
-#######################################
-search-engine:
-  build: docker/mono/
-  links:
-    #- mysql
-    #- postgres
-    #- mail
-    - search-index-solr
-    - search-index-elastic
-    #- redis
-    #- memcached
-    #- ftp
-  entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 --timeout=60 --strict -- mono ./Appleseed.Services.Search.Console.exe 
-  volumes_from:
-    - storage
-  env_file:
-    - etc/environment.yml
-    - etc/environment.production.yml
+    #######################################
+    # Appleseed.Search IndexService
+    #######################################
+    search-engine:
+      build: docker/mono/
+      links:
+        #- mysql
+        #- postgres
+        #- mail
+        - search-index-solr
+        - search-index-elastic
+        #- redis
+        #- memcached
+        #- ftp
+      #entrypoint: /tmp/wait-for-it.sh search-index-solr:8983 --timeout=60 --strict -- mono ./Appleseed.Services.Search.Console.exe 
+      volumes_from:
+        - storage
+      env_file:
+        - etc/environment.yml
+        - etc/environment.production.yml
 
-#######################################
-# Proxy server / Load Balancer
-#######################################
-search-app-proxy:
-  build: docker/nginx/
-  #container_name: search-app.local
-  volumes_from:
-    - storage
-  ports:
-    - "80:80"
-  links:
-    - search-app
+    #######################################
+    # Proxy server / Load Balancer
+    #######################################
+    search-app-proxy:
+      build: docker/nginx/
+      #container_name: search-app.local
+      volumes_from:
+        - storage
+      ports:
+        - "80:80"
+      links:
+        - search-app
 
-  env_file:
-    - etc/environment.yml
-    - etc/environment.production.yml
+      env_file:
+        - etc/environment.yml
+        - etc/environment.production.yml
 
-#######################################
-# Solr server
-#######################################
-search-index-solr:
-  build: docker/solr/
-#  container_name: search-index-solr.local
-# TODO: load from persistent storage -- maybe using Glsuter or other
-  volumes: 
-    - ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
-  volumes_from:
-    - storage
-  environment:
-    - SOLR_STORAGE=/storage/solr/appleseed-public/
-  env_file:
-    - etc/environment.yml
-    - etc/environment.production.yml
-  ports:
-    - "8983:8983"
-
-
-#######################################
-# Elasticsearch
-#######################################
-search-index-elastic:
-  build: docker/elastic/
-  #container_name: search-index-elastic.local
-  volumes_from:
-    - storage
-  env_file:
-    - etc/environment.yml
-    - etc/environment.production.yml
-  ports: 
-    - "9200:9200"
-
-#######################################
-# Storage
-#######################################
-storage:
-  build: docker/storage/
-  #container_name: storage.local
-  volumes:
-    - /storage
+    #######################################
+    # Solr server
+    #######################################
+    search-index-solr:
+      build: docker/solr/
+    # container_name: search-index-solr.local
+    # TODO: load from persistent storage -- maybe using Glsuter or other
+      volumes: 
+        - data:/opt/solr/example/solr
+        #- ./docker/solr/anant/appleseed-search/solr:/opt/solr/example/solr
+      volumes_from:
+        - storage
+      environment:
+        - SOLR_STORAGE=/storage/solr/appleseed-public/
+      env_file:
+        - etc/environment.yml
+        - etc/environment.production.yml
+      ports:
+        - "8983:8983"
 
 
+    #######################################
+    # Elasticsearch
+    #######################################
+    search-index-elastic:
+      build: docker/elastic/
+      #container_name: search-index-elastic.local
+      volumes_from:
+        - storage
+      env_file:
+        - etc/environment.yml
+        - etc/environment.production.yml
+      ports: 
+        - "9200:9200"
+
+    #######################################
+    # Storage
+    #######################################
+    storage:
+      build: docker/storage/
+      #container_name: storage.local
+      volumes:
+        - /storage
+
+
+volumes:
+    data:
+        
 #######################################
 # NOT YET IMPLEMENTED, NOT YET USED
 #######################################

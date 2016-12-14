@@ -16,6 +16,6 @@
 FROM makuk66/docker-solr:4.10.4 
 MAINTAINER Rahul Singh <rahul.singh@anant.us>
 
-#RUN mkdir -p /opt/solr/example/solr/appleseed-public/
-#RUN mkdir -p /opt/solr/example/solr/appleseed-public/data
-#COPY ./anant/appleseed-search/solr/ /opt/solr/example/solr/
+RUN mkdir -p /opt/solr/example/solr/appleseed-public/
+RUN mkdir -p /opt/solr/example/solr/appleseed-public/data
+COPY ./anant/appleseed-search/solr/ /opt/solr/example/solr/
