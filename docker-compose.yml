@@ -4,6 +4,25 @@
 #######################################
 version: '2'
 services: 
+    search-web:
+      build: docker/apache/
+      links:
+        #- mysql
+        #- postgres
+        #- mail
+        - search-index-solr
+        - search-index-elastic
+        #- redis
+        #- memcached
+        #- ftp
+      ports:
+        - "8080:8080"
+      volumes_from:
+        - storage
+      env_file:
+        - etc/environment.yml
+        - etc/environment.production.yml
+
     search-app:
       build: docker/dotnet/
       links:
@@ -57,7 +76,7 @@ services:
         - "80:80"
       links:
         - search-app
-
+        - search-web
       env_file:
         - etc/environment.yml
         - etc/environment.production.yml

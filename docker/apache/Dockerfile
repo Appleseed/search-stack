@@ -16,6 +16,9 @@ MAINTAINER Rahul Singh <rahul.singh@anant.us>
 RUN apt-get update -qq \
 && apt-get install -y wget unzip 
 
+# listen on 8080 so that it can be used in the same network as nginx for proxy
+RUN sed -i 's/Listen\ 80/Listen\ 8080/g' /usr/local/apache2/conf/httpd.conf
+
 # make the default directories 
 RUN mkdir -p /Services /Services/Appleseed.Search/ /Services/Appleseed.Search/Web.User
 RUN mkdir -p /usr/local/apache2/htdocs/solr/ /usr/local/apache2/htdocs/elastic/
@@ -31,3 +34,5 @@ RUN cd /tmp \
 && cd /tmp \
 && rm -f latest.zip \
 && rm -rf search-web-user-latest
+
+EXPOSE 8080
