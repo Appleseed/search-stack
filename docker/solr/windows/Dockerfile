@@ -60,7 +60,7 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Temps
    
     
 #Add Solr As a Service
-RUN New-Service -DisplayName 'Solr5' -BinaryPathName 'c:\solr\solr-5.5.3\bin\solr start -f -p 8983 -s c:\solr\solr-5.5.3\example\appleseed-search\solr -V' \
+RUN New-Service -Name 'Solr5' -DisplayName 'Solr5' -BinaryPathName 'c:\solr\solr-5.5.3\bin\solr start -f -p 8983 -s c:\solr\solr-5.5.3\example\appleseed-search\solr -V' \
      -StartupType 'Automatic'
     
 RUN Start-Service Solr5
