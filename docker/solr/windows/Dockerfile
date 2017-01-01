@@ -60,14 +60,14 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Temps
    
     
 #Add Solr As a Service
-RUN $params = @('install', 'Solr5', 'c:\\solr\\solr-5.5.3\\bin\\solr.cmd', \
-           'c:\\solr\\solr-5.5.3\\bin', 'start -f -p 8983 -s c:\solr\solr-5.5.3\example\appleseed-search\solr -V') ;\
-    nssm $params
+RUN New-Service -Name 'Solr5' -BinaryPathName 'c:\\solr\\solr-5.5.3\\bin\\solr.cmd start -f -p 8983 -s c:\\solr\\solr-5.5.3\\example\\appleseed-search\\solr -V' \
+     -StartupType 'Auto'
     
 RUN Start-Service Solr5
 
 ## Enable AAR
-Run Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter "system.webServer/proxy" -name "enabled" -value "True"
+Run Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter 'system.webServer/proxy' -name 'enabled' -value 'True' 
+    
 
 EXPOSE 80
 
