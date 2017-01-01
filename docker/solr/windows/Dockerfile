@@ -66,6 +66,9 @@ RUN $params = @('install', 'Solr5', 'c:\\solr\\solr-5.5.3\\bin\\solr.cmd', \
     
 RUN Start-Service Solr5
 
+## Enable AAR
+Run Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter "system.webServer/proxy" -name "enabled" -value "True"
+
 EXPOSE 80
 
  
