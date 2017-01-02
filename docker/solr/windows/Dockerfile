@@ -73,7 +73,7 @@ Run Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter 'sys
 EXPOSE 80
 EXPOSE 8983 
 
-CMD powershell -Command  "c:\\solr\\solr-5.5.3\\bin\\solr start -p 8983 -s c:\\solr\\solr-5.5.3\\example\\appleseed-search\\solr -V"
- 
+#CMD powershell -Command  "c:\\solr\\solr-5.5.3\\bin\\solr start -p 8983 -s c:\\solr\\solr-5.5.3\\example\\appleseed-search\\solr -V"
+CMD powershell -Command "c:\\solr\\solr-5.5.3\\bin\\solr.cmd start -p 8983 -f"
 
  
