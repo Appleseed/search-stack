@@ -1,6 +1,6 @@
 # Elastic 5.1.1 on Windows Server Core 2016 ( UI Less)
  
-FROM microsoft/iis
+FROM microsoft/windowsservercore
 
 SHELL ["powershell"]
 
@@ -53,14 +53,15 @@ RUN rm C:\\Tempsoft\\elasticsearch-5.1.1.zip
 #RUN c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat
 
 EXPOSE 80
+EXPOSE 9200
 
 #ENTRYPOINT ["c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat"]
-#RUN c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat
+CMD powershell -Command "c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat"
 
 #Add Solr As a Service
-RUN $params = @('install', 'ElasticSearch', 'c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat', \
-           'c:\\elastic\\elasticsearch-5.1.1\\bin', '') ;\
-    nssm $params
+#RUN $params = @('install', 'ElasticSearch', 'c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat', \
+#           'c:\\elastic\\elasticsearch-5.1.1\\bin', '') ;\
+#    nssm $params
     
-RUN Start-Service ElasticSearch
+#RUN Start-Service ElasticSearch
  
