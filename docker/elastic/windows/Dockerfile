@@ -28,7 +28,9 @@ RUN $env:chocolateyUseWindowsCompression = 'false' ;\
     choco install 7zip.install ;\
     choco install urlrewrite ;\
     choco install nssm ;\
-    choco install iis-arr
+    choco install iis-arr ;\
+    choco install git ;\
+    choco install nodejs
     
 #Pull down Proxy
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/elastic.proxy.config.zip C:\\Appleseed\\Proxy    
