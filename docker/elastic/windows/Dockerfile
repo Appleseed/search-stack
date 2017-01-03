@@ -1,4 +1,5 @@
-# Elastic 5.1.1 on Windows Server Core 2016 ( UI Less)
+# Elastic 2.4.3 /  5.1.1 on Windows Server Core 2016 ( UI Less)
+# TO:DO - Add Env Variables 
  
 FROM microsoft/windowsservercore
 
@@ -40,28 +41,22 @@ RUN Remove-WebSite -Name 'Default Web Site'  ;\
     New-Website -Name 'Appleseed.Search.Proxy' -Port 80 \  
     -PhysicalPath 'c:\Appleseed\Proxy' -ApplicationPool '.NET v4.5'
  
-# ADD Elastic 5.1.1
-ADD https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.1.1.zip C:\\Tempsoft
+# ADD Elastic 2.4.3 for ItemsAPI | Leave 5.1.1 link for future / Add to env variables
+#ADD https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.1.1.zip C:\\Tempsoft
+ADD https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/2.4.3/elasticsearch-2.4.3.zip  C:\\Tempsoft
 
 #Unzip the main archive
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Tempsoft\\elasticsearch-5.1.1.zip' -DestinationPath 'C:\\elastic'"
- 
+#RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Tempsoft\\elasticsearch-5.1.1.zip' -DestinationPath 'C:\\elastic'"
+RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Tempsoft\\elasticsearch-2.4.3.zip' -DestinationPath 'C:\\elastic'"
+  
 #Cleanup
-RUN rm C:\\Tempsoft\\elasticsearch-5.1.1.zip  
-
-#Start Elastic
-#RUN c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat
+#RUN rm C:\\Tempsoft\\elasticsearch-5.1.1.zip  
+RUN rm C:\\Tempsoft\\elasticsearch-2.4.3.zip
 
 EXPOSE 80
 EXPOSE 9200
 
-#ENTRYPOINT ["c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat"]
-CMD powershell -Command "c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat"
+#CMD powershell -Command "c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat"
+CMD powershell -Command "c:\\elastic\\elasticsearch-2.4.3\\bin\\elasticsearch.bat"
 
-#Add Solr As a Service
-#RUN $params = @('install', 'ElasticSearch', 'c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat', \
-#           'c:\\elastic\\elasticsearch-5.1.1\\bin', '') ;\
-#    nssm $params
-    
-#RUN Start-Service ElasticSearch
  
