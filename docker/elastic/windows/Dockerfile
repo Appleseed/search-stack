@@ -53,9 +53,9 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Temps
 #RUN rm C:\\Tempsoft\\elasticsearch-5.1.1.zip  
 RUN rm C:\\Tempsoft\\elasticsearch-2.4.3.zip
 
-EXPOSE 80
-EXPOSE 9200
-
+#EXPOSE 80 9200
+EXPOSE 9200 9300
+ 
 #CMD powershell -Command "c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat"
 CMD powershell -Command "c:\\elastic\\elasticsearch-2.4.3\\bin\\elasticsearch.bat"
 
