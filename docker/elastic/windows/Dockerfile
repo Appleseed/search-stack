@@ -30,7 +30,7 @@ RUN $env:chocolateyUseWindowsCompression = 'false' ;\
     choco install iis-arr
     
 #Pull down Proxy
-ADD https://github.com/Appleseed/portal-stack/releases/download/v1.1.1.0/elastic.proxy.config.zip C:\\Appleseed\\Proxy    
+ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/elastic.proxy.config.zip C:\\Appleseed\\Proxy    
     
 RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Appleseed\\Proxy\\elastic.proxy.config.zip' -DestinationPath ' C:\\Appleseed\\Proxy'" ;\
     rm C:\\Appleseed\\Proxy\\elastic.proxy.config.zip
