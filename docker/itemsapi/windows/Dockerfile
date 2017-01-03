@@ -58,8 +58,9 @@ RUN rm C:\\Tempsoft\\elasticsearch-2.4.3.zip
 
 #Install ItemsAPI
 RUN cd C:\\ItemsAPI ;\
-    git clone https://github.com/itemsapi/itemsapi.git ;\
-    npm install
+    git clone https://github.com/itemsapi/itemsapi.git 
+   # To-Do discover how to call install and continue step | Currently it pauses the step and works better during a container run
+   # npm install
 
 #EXPOSE 80 9200
 EXPOSE 9200 9300 3000
