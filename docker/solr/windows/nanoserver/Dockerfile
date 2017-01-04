@@ -12,15 +12,12 @@ RUN MD C:\\solr ;\
        
 WORKDIR C:\\solr
 
-ADD https://chocolatey.org/install.ps1 C:\\Tempsoft
+RUN powershell -Command "Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;Set-PSRepository -Name PSGallery -InstallationPolicy Trusted;Install-Module PS7Zip;"
 
-#Install chocolatey and any required tools
-RUN $env:chocolateyUseWindowsCompression = 'false' ;\
-    C:\\Tempsoft\\install.ps1 ;\
-    chocolatey feature enable -n=allowGlobalConfirmation ;\
-    choco install jdk8 ;\
-    choco install 7zip.install ;\
-    choco install nssm
+ADD https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.91-3/java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64.zip java.zip
+
+RUN powershell -Command "Expand-7Zip java.zip" ;\
+     $env:JAVA_HOME=C:\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64
   
 #Pull down Proxy
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/solr.proxy.config.zip C:\\Appleseed\\Proxy    
@@ -33,8 +30,9 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Apple
 ADD http://apache.mirrors.ionfish.org/lucene/solr/5.5.3/solr-5.5.3.zip  C:\\Tempsoft
 #Unzip the main archive
 #Solr is so large it needs 7zip to unzip and not error
-RUN cd $env:programfiles\\7-Zip\\ ;\
-   ./7z x  C:\\Tempsoft\\solr-5.5.3.zip -oc:\\solr
+RUN  cd c:\\Tempsoft ;\
+     powershell -Command  "Expand-7Zip C:\\Tempsoft\\solr-5.5.3.zip c:\\solr"
+  
 
 #Cleanup
 RUN rm  C:\\Tempsoft\\solr-5.5.3.zip  
