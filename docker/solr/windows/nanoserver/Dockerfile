@@ -12,9 +12,11 @@ RUN MD C:\\solr ;\
        
 WORKDIR C:\\solr
 
+ADD https://chocolatey.org/install.ps1 C:\\Tempsoft
+
 #Install chocolatey and any required tools
 RUN $env:chocolateyUseWindowsCompression = 'false' ;\
-    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) ;\
+    C:\\Tempsoft\\install.ps1 ;\
     chocolatey feature enable -n=allowGlobalConfirmation ;\
     choco install jdk8 ;\
     choco install 7zip.install ;\
