@@ -17,7 +17,7 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Apple
     
 #Cleanup
 
-#RUN rm  C:\\Appleseed\\Search\\IndexService.zip
+RUN rm  C:\\Appleseed\\Search\\IndexService.zip
 
-ENTRYPOINT ["C:\\ServiceMonitor.exe", "w3svc"]
+CMD powershell -Command  ping -t localhost
  
