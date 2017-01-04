@@ -1,6 +1,6 @@
 # Solr 5.5.3 on Windows Server Core 2016 ( UI Less)
  
-FROM microsoft/windowsservercore
+FROM microsoft/nanoserver
 
 SHELL ["powershell"]
 
@@ -62,7 +62,7 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Temps
 Run Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter 'system.webServer/proxy' -name 'enabled' -value 'True' 
     
 
-EXPOSE 80
+#EXPOSE 80
 EXPOSE 8983 
 
 CMD powershell -Command  "c:\\solr\\solr-5.5.3\\bin\\solr.cmd start -p 8983 -f -s c:\\solr\\solr-5.5.3\\example\\appleseed-search\\solr -V"
