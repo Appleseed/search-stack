@@ -17,7 +17,7 @@ RUN powershell -Command "Install-PackageProvider -Name NuGet -MinimumVersion 2.8
 ADD https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.91-3/java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64.zip java.zip
 
 RUN powershell -Command "Expand-7Zip java.zip" ;\
-     $env:JAVA_HOME=C:\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64
+     $env:JAVA_HOME='C:\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64'
   
 #Pull down Proxy
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/solr.proxy.config.zip C:\\Appleseed\\Proxy    
