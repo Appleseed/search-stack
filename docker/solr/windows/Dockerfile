@@ -32,7 +32,8 @@ RUN $env:chocolateyUseWindowsCompression = 'false' ;\
   
 #Pull down Proxy
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/solr.proxy.config.zip C:\\Appleseed\\Proxy    
-    
+
+#Unzip Proxy
 RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Appleseed\\Proxy\\solr.proxy.config.zip' -DestinationPath ' C:\\Appleseed\\Proxy'" ;\
     rm C:\\Appleseed\\Proxy\\solr.proxy.config.zip
 
@@ -50,21 +51,22 @@ ADD http://apache.mirrors.ionfish.org/lucene/solr/5.5.3/solr-5.5.3.zip  C:\\Temp
 RUN cd $env:programfiles\\7-Zip\\ ;\
    ./7z x  C:\\Tempsoft\\solr-5.5.3.zip -oc:\\solr
 
-#Cleanup
-RUN rm  C:\\Tempsoft\\solr-5.5.3.zip  
 
-#Add Core | Start Solr
+#Add Core 
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/appleseed-search.core.zip C:\\Tempsoft
 RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Tempsoft\\appleseed-search.core.zip' -DestinationPath 'c:\\solr\\solr-5.5.3\\example'" ;\
     rm C:\\Tempsoft\\appleseed-search.core.zip 
    
 ## Enable AAR
 Run Set-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST'  -filter 'system.webServer/proxy' -name 'enabled' -value 'True' 
-    
+ 
+#Cleanup
+RUN rm  C:\\Tempsoft\\solr-5.5.3.zip  
 
 #EXPOSE 80
 EXPOSE 8983 
 
+#Start Solr when the container starts
 CMD powershell -Command  "c:\\solr\\solr-5.5.3\\bin\\solr.cmd start -p 8983 -f -s c:\\solr\\solr-5.5.3\\example\\appleseed-search\\solr -V"
 
 
