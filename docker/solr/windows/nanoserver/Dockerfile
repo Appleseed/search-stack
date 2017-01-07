@@ -12,18 +12,18 @@ RUN MD C:\\solr ;\
        
 WORKDIR C:\\solr
 
-RUN powershell -Command "Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;Set-PSRepository -Name PSGallery -InstallationPolicy Trusted;Install-Module PS7Zip;"
+#RUN powershell -Command "Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;Set-PSRepository -Name PSGallery -InstallationPolicy Trusted;Install-Module PS7Zip;"
 
-ADD https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.91-3/java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64.zip java.zip
+ADD https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.91-3/java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64.zip c:\\Java\\java.1.8.zip
 
-RUN powershell -Command "Expand-7Zip java.zip" ;\
-     $env:JAVA_HOME='C:\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64'
+RUN powershell -Command "Expand-7Zip c:\\Java\\java.1.8.zip" ;\
+   setx /M JAVA_HOME 'C:\\Java\\Java.1.8'
   
 #Pull down Proxy
-ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/solr.proxy.config.zip C:\\Appleseed\\Proxy    
+#ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/solr.proxy.config.zip C:\\Appleseed\\Proxy    
     
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Appleseed\\Proxy\\solr.proxy.config.zip' -DestinationPath ' C:\\Appleseed\\Proxy'" ;\
-    rm C:\\Appleseed\\Proxy\\solr.proxy.config.zip
+#RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Appleseed\\Proxy\\solr.proxy.config.zip' -DestinationPath ' C:\\Appleseed\\Proxy'" ;\
+#    rm C:\\Appleseed\\Proxy\\solr.proxy.config.zip
 
     
  # ADD Solr 5.5.3
