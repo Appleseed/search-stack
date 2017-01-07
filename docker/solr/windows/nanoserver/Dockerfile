@@ -7,9 +7,8 @@ SHELL ["powershell"]
 MAINTAINER ANANT Corporation www.anant.us | Report Issues : https://github.com/Appleseed/portal-stack/issues
 
 #Setup Working Directories
-RUN MD C:\\solr ;\
-    MD C:\\Tempsoft  
-       
+RUN MD C:\\solr 
+ 
 WORKDIR C:\\solr
 
 RUN powershell -Command "Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;Set-PSRepository -Name PSGallery -InstallationPolicy Trusted;Install-Module PS7Zip;"
@@ -27,20 +26,19 @@ RUN powershell -Command "Expand-7Zip c:\\Java\\java.1.8.zip" ;\
 
     
  # ADD Solr 5.5.3
-ADD http://apache.mirrors.ionfish.org/lucene/solr/5.5.3/solr-5.5.3.zip  C:\\Tempsoft
+ADD http://apache.mirrors.ionfish.org/lucene/solr/5.5.3/solr-5.5.3.zip  C:\\solr
 #Unzip the main archive
 #Solr is so large it needs 7zip to unzip and not error
-RUN  cd c:\\Tempsoft ;\
-     powershell -Command  "Expand-7Zip C:\\Tempsoft\\solr-5.5.3.zip c:\\solr"
+RUN  powershell -Command  "Expand-7Zip C:\\solr\\solr-5.5.3.zip"
   
 
 #Cleanup
-RUN rm  C:\\Tempsoft\\solr-5.5.3.zip  
+RUN rm  C:\\solr\\solr-5.5.3.zip  
 
 #Add Core | Start Solr
-ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/appleseed-search.core.zip C:\\Tempsoft
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Tempsoft\\appleseed-search.core.zip' -DestinationPath 'c:\\solr\\solr-5.5.3\\example'" ;\
-    rm C:\\Tempsoft\\appleseed-search.core.zip 
+ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/appleseed-search.core.zip C:\\solr
+RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\solr\\appleseed-search.core.zip' -DestinationPath 'c:\\solr\\solr-5.5.3\\example'" ;\
+    rm C:\\solr\\appleseed-search.core.zip 
    
 EXPOSE 8983 
 
