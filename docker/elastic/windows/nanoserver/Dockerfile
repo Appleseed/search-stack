@@ -34,6 +34,6 @@ RUN rm C:\\Tempsoft\\elasticsearch-5.1.1.zip
 
 EXPOSE 9200 9300
  
-CMD powershell -Command "c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat --Des.network.host=0.0.0.0"
+CMD powershell -Command "c:\\elastic\\elasticsearch-5.1.1\\bin\\elasticsearch.bat --E network.host=0.0.0.0"
 
  
