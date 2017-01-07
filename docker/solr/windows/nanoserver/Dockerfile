@@ -17,7 +17,7 @@ ADD https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.91-3/java-1.8
 
 RUN powershell -Command "Expand-7Zip c:\\Java\\java.1.8.zip -TargetPath C:\\Java\\ " ;\
    setx /M JAVA_HOME 'C:\\Java\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64' ;\
-   cd c:\\java\\ ;\
+   cd c:\\java\\
   
   
 # ADD Solr 5.5.3
