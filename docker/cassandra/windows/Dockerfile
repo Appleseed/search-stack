@@ -42,4 +42,4 @@ EXPOSE 7000 7001 7199 8888
 #To-do : Fix this long string -- Currently how apache packages cassandra
 #CMD powershell -Command "c:\\cassandra\\apache-cassandra-3.9-bin.tar\\apache-cassandra-3.9-bin\\apache-cassandra-3.9\\bin\\cassandra.bat"
 
- CMD powershell -Command ping -t
+CMD powershell -Command  ping -t localhost
