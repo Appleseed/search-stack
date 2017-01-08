@@ -252,11 +252,11 @@
  <uniqueKey>id</uniqueKey>
  
    <!-- Appleseed.Search Public required fields  -->
-	  <field name="moduleID" type="tlongs"/>
+	  <field name="moduleID" type="tlong"/>
 	  <field name="name" type="text_general"/>
-	  <field name="pageID" type="tlongs"/>
+	  <field name="pageID" type="tlong"/>
 	  <field name="path" type="text_general"/>
-	  <field name="portalID" type="tlongs"/>
+	  <field name="portalID" type="tlong"/>
 	  <field name="smartKeywords" type="text_general"/>
 	  <field name="source" type="text_general"/>
 	  <field name="type" type="text_general"/>
