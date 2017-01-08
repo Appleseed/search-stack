@@ -179,16 +179,7 @@
 
    <field name="payloads" type="payloads" indexed="true" stored="true"/>
 
-   <!-- Appleseed.Search Public required fields  -->
-	  <field name="moduleID" type="tlongs"/>
-	  <field name="name" type="text_general"/>
-	  <field name="pageID" type="tlongs"/>
-	  <field name="path" type="text_general"/>
-	  <field name="portalID" type="tlongs"/>
-	  <field name="smartKeywords" type="text_general"/>
-	  <field name="source" type="text_general"/>
-	  <field name="type" type="text_general"/>
-	  <field name="viewRole" type="text_general"/>
+ 
 
    <!--
      Some fields such as popularity and manu_exact could be modified to
@@ -259,6 +250,17 @@
       Unless this field is marked with required="false", it will be a required field
    -->
  <uniqueKey>id</uniqueKey>
+ 
+   <!-- Appleseed.Search Public required fields  -->
+	  <field name="moduleID" type="tlongs"/>
+	  <field name="name" type="text_general"/>
+	  <field name="pageID" type="tlongs"/>
+	  <field name="path" type="text_general"/>
+	  <field name="portalID" type="tlongs"/>
+	  <field name="smartKeywords" type="text_general"/>
+	  <field name="source" type="text_general"/>
+	  <field name="type" type="text_general"/>
+	  <field name="viewRole" type="text_general"/>
 
  <!-- DEPRECATED: The defaultSearchField is consulted by various query parsers when
   parsing a query string that isn't explicit about the field.  Machine (non-user)
