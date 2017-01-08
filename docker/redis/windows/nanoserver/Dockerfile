@@ -25,6 +25,6 @@ RUN rm C:\\redis\\win-3.2.100.zip
 
 EXPOSE 6379
  
-CMD powershell -Command "c:\\redis\\redis-win-3.2.100\\redis-server.exe"
-
+#CMD powershell -Command "c:\\redis\\redis-win-3.2.100\\redis-server.exe"
+CMD powershell -Command  ping -t localhost
 
