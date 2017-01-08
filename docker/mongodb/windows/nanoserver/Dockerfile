@@ -32,6 +32,7 @@ RUN rm C:\\MongoDB\\Mongo.zip
 #The default port for mongod and mongos instances is 27017
 EXPOSE 27017 27018 27019
  
-CMD powershell -Command "c:\\MongoDB\\3.4.1\\bin\\mongod.exe"
+#CMD powershell -Command "c:\\MongoDB\\3.4.1\\bin\\mongod.exe"
+CMD powershell -Command  ping -t localhost
 
  
