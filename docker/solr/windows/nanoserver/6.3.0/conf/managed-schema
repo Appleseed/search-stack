@@ -45,7 +45,7 @@
     that avoids logging every request
 -->
 
-<schema name="example-DIH-solr" version="1.6">
+<schema name="appleseed-public-solr" version="1.6">
   <!-- attribute "name" is the name of this schema and is only used for display purposes.
        version="x.y" is Solr's version number for the schema syntax and 
        semantics.  It should not normally be changed by applications.
@@ -122,7 +122,7 @@
      installations. See the <uniqueKey> declaration below where <uniqueKey> is set to "id".
    -->   
    <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" /> 
-        
+   <!--
    <field name="sku" type="text_en_splitting_tight" indexed="true" stored="true" omitNorms="true"/>
    <field name="name" type="text_general" indexed="true" stored="true"/>
    <field name="manu" type="text_general" indexed="true" stored="true" omitNorms="true"/>
@@ -136,7 +136,7 @@
    <field name="inStock" type="boolean" indexed="true" stored="true" />
 
    <field name="store" type="location" indexed="true" stored="true"/>
-
+   -->
    <!-- Common metadata fields, named specifically to match up with
      SolrCell metadata when parsing rich documents such as Word, PDF.
      Some fields are multiValued only because Tika currently may return
@@ -175,10 +175,11 @@
 
    <!-- non-tokenized version of manufacturer to make it easier to sort or group
         results by manufacturer.  copied from "manu" via copyField -->
+   <!-- 
    <field name="manu_exact" type="string" indexed="true" stored="false"/>
 
    <field name="payloads" type="payloads" indexed="true" stored="true"/>
-
+    -->
  
 
    <!--
