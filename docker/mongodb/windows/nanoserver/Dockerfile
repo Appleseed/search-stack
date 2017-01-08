@@ -1,4 +1,7 @@
 # MongoDB 3.4.1 on Nanoserver [ Thin UI Less ]
+# Todo : Add Open SSL dlls or it doesnt work 
+# Mongo is planning an official release on nano so ill pause . 
+# Todo : Add Volume for Data store
 
 FROM microsoft/nanoserver
 
@@ -7,8 +10,8 @@ SHELL ["powershell"]
 MAINTAINER ANANT Corporation https://www.anant.us | Report Issues : https://github.com/Appleseed/search-stack/issues
 
 #Setup Working Directories
-RUN MD C:\\MongoDB ;\
-    MD C:\\MongoDB\\data\\db
+RUN MD C:\\MongoDB 
+    
     
 WORKDIR C:\\MongoDB
 
@@ -25,7 +28,8 @@ ADD http://downloads.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-v3.4-la
 
 #Unzip the main archive
 RUN  powershell -Command  "Expand-7Zip C:\\MongoDB\\Mongo.zip" ;\
-     Rename-Item mongodb-win32-x86_64-2008plus-ssl-3.4.1-62-gb758d56 3.4.1
+     Rename-Item mongodb-win32-x86_64-2008plus-ssl-3.4.1-62-gb758d56 3.4.1 ;\
+     MD C:\\MongoDB\\3.4.1\\data\\db
   
 #Cleanup
 RUN rm C:\\MongoDB\\Mongo.zip  
