@@ -18,9 +18,8 @@ WORKDIR C:\\redis
 ADD https://github.com/MSOpenTech/redis/archive/win-3.2.100.zip C:\\redis
 
 #Unzip the main archive
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\redis\\win-3.2.100.zip' -DestinationPath 'C:\\redis'" ;\
-   
-  
+RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\redis\\win-3.2.100.zip' -DestinationPath 'C:\\redis'" 
+
 #Cleanup
 RUN rm C:\\redis\\win-3.2.100.zip
 
