@@ -7,7 +7,8 @@ SHELL ["powershell"]
 MAINTAINER ANANT Corporation https://www.anant.us | Report Issues : https://github.com/Appleseed/search-stack/issues
 
 #Setup Working Directories
-RUN MD C:\\MongoDB 
+RUN MD C:\\MongoDB ;\
+    MD C:\\MongoDB\\data\\db
     
 WORKDIR C:\\MongoDB
 
