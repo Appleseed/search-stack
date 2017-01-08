@@ -15,13 +15,13 @@ WORKDIR C:\\redis
 #RUN powershell -Command "Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force;Set-PSRepository -Name PSGallery -InstallationPolicy Trusted;Install-Module PS7Zip;"
      
 #ADD Redis 3.2 on Windows 
-ADD https://github.com/MSOpenTech/redis/archive/win-3.2.100.zip C:\\redis
+ADD https://github.com/MSOpenTech/redis/releases/download/win-3.2.100/Redis-x64-3.2.100.zip C:\\redis
 
 #Unzip the main archive
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\redis\\win-3.2.100.zip' -DestinationPath 'C:\\redis'" 
+RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\redis\\Redis-x64-3.2.100.zip' -DestinationPath 'C:\\redis'" 
 
 #Cleanup
-RUN rm C:\\redis\\win-3.2.100.zip
+RUN rm C:\\redis\\Redis-x64-3.2.100.zip
 
 EXPOSE 6379
  
