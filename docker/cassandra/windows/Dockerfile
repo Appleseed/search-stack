@@ -31,7 +31,7 @@ RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9.gz"
      #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar\\apache-cassandra-3.9-bin"
 
 #Cleanup
-RUN rm C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz 
+RUN rm C:\\cassandra\\cassandra.3.9.gz
 
 #7000	Cassandra inter-node cluster communication.
 #7001	Cassandra SSL inter-node cluster communication.
