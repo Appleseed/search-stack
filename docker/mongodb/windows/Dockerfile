@@ -1,4 +1,4 @@
-FROM mongo/windowsservercore
+FROM mongo:windowsservercore
 
 SHELL ["powershell"]
 
