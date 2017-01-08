@@ -7,8 +7,7 @@ SHELL ["powershell"]
 MAINTAINER ANANT Corporation https://www.anant.us | Report Issues : https://github.com/Appleseed/portal-stack/issues
 
 #Setup Working Directories
-RUN MD C:\\Tempsoft ;\
-    MD C:\\cassandra
+RUN MD C:\\cassandra
     
 WORKDIR C:\\cassandra
 
@@ -20,16 +19,17 @@ ADD https://github.com/ojdkbuild/ojdkbuild/releases/download/1.8.0.91-3/java-1.8
 
 #Install Java 1.8
 RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\\java.1.8.zip' -DestinationPath 'c:\\Java'" ;\
-   setx /M JAVA_HOME 'C:\\Java\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64'
+    setx /M JAVA_HOME 'C:\\Java\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64' ;\
+    rm c:\\Java\\java.1.8.zip
      
 #ADD Cassandra 3.9
-ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\Tempsoft
+ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\cassandra
 
 #Unzip the main archive
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\Tempsoft\\apache-cassandra-3.9-bin.tar.gz' -DestinationPath 'C:\\cassandra'"
-  
+RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz"
+
 #Cleanup
-RUN rm C:\\Tempsoft\\apache-cassandra-3.9-bin.tar.gz
+RUN rm C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz
 
 #7000	Cassandra inter-node cluster communication.
 #7001	Cassandra SSL inter-node cluster communication.
