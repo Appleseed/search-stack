@@ -33,9 +33,10 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\solr\
     rm C:\\solr\\appleseed-search.core.zip ;\
     cp c:\\solr\\solr-6.3.0\\example\\example-DIH\\solr\\solr\\conf\\xslt c:\\solr\\solr-6.3.0\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
     cp c:\\solr\\solr-6.3.0\\example\\example-DIH\\solr\\solr\\conf\\clustering c:\\solr\\solr-6.3.0\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
-    cp c:\\solr\\solr-6.3.0\\example\\example-DIH\\solr\\solr\\conf\\managed-schema c:\\solr\\solr-6.3.0\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
     cp c:\\solr\\solr-6.3.0\\example\\example-DIH\\solr\\solr\\conf\\lang\\stopwords_ckb.txt c:\\solr\\solr-6.3.0\\example\\appleseed-search\\solr\\appleseed-public\\conf\\lang ;\
     cp c:\\solr\\solr-6.3.0\\example\\example-DIH\\solr\\solr\\conf\\solrconfig.xml c:\\solr\\solr-6.3.0\\example\\appleseed-search\\solr\\appleseed-public\\conf
+
+COPY conf/managed-schema c:/solr/solr-6.3.0/example/appleseed-search/solr/appleseed-public/conf
 
 EXPOSE 8983 
 
