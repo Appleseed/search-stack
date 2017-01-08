@@ -5,7 +5,7 @@ FROM microsoft/windowsservercore
 
 SHELL ["powershell"]
 
-MAINTAINER ANANT Corporation www.anant.us | Report Issues : https://github.com/Appleseed/portal-stack/issues
+MAINTAINER ANANT Corporation www.anant.us | Report Issues : https://github.com/Appleseed/search-stack/issues
 
 #Setup Working Directories
 RUN MD C:\\Tempsoft ;\
