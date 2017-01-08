@@ -26,13 +26,11 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
 ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\cassandra\\cassandra.3.9.gz
 
 #Unzip the main archive
-RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9.gz"  ;\
+RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9.gz -Remove 1"  ;\
      powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9 -Remove 1"
      #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-biyn.tar\\apache-cassandra-3.9-bin"
 
-#Cleanup
-RUN rm C:\\cassandra\\cassandra.3.9.gz
-
+ 
 #7000	Cassandra inter-node cluster communication.
 #7001	Cassandra SSL inter-node cluster communication.
 #7199	Cassandra JMX monitoring port.
