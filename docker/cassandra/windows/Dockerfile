@@ -26,8 +26,8 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
 ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\cassandra
 
 #Unzip the main archive
-RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz" #;\
-    # powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar" ;\
+RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz" ;\
+     powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar"  
      #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar"
 
 #Cleanup
