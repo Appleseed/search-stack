@@ -26,10 +26,11 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
 ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\cassandra
 
 #Unzip the main archive
-RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz"
+RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz" ;\
+     powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar\\apache-cassandra-3.9-bin.tar"
 
 #Cleanup
-RUN rm C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz
+RUN rm C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz 
 
 #7000	Cassandra inter-node cluster communication.
 #7001	Cassandra SSL inter-node cluster communication.
@@ -37,6 +38,7 @@ RUN rm C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz
 #8888	OpsCenter website. The opscenterd daemon listens on this port for HTTP requests coming directly from the browser.
 EXPOSE 7000 7001 7199 8888
  
-CMD powershell -Command "c:\\cassandra\\apache-cassandra-3.9\\bin\\cassandra.bat"
+#To-do : Fix this long string -- Currently how apache packages cassandra
+CMD powershell -Command "c:\\cassandra\\apache-cassandra-3.9-bin.tar\\apache-cassandra-3.9-bin\\apache-cassandra-3.9\\bin\\cassandra.bat"
 
  
