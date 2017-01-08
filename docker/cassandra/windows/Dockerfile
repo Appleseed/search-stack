@@ -23,12 +23,11 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
     rm c:\\Java\\java.1.8.zip
      
 #ADD Cassandra 3.9
-ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\cassandra
+ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz C:\\cassandra\\cassandra.3.9.gz
 
 #Unzip the main archive
-RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar.gz" 
-     # have to figure a better way to extract gz files.  Only works when container is working
-     #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar" ;\ 
+RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9.gz" ;\
+     powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar"  
      #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-bin.tar\\apache-cassandra-3.9-bin"
 
 #Cleanup
