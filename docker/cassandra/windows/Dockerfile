@@ -27,7 +27,7 @@ ADD http://apache.mirrors.ionfish.org/cassandra/3.9/apache-cassandra-3.9-bin.tar
 
 #Unzip the main archive
 RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9.gz -Remove 1"  ;\
-     powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9 -Remove 1"
+     powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9 -Remove 1" -Force
      #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-biyn.tar\\apache-cassandra-3.9-bin"
 
  
