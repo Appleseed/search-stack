@@ -1,4 +1,4 @@
-# Solr 6.4.0 (Latest) on Windows Nanoserver 2016 [Tiny Image | No UI]
+# Solr 6.4.1 (Latest) on Windows Nanoserver 2016 [Tiny Image | No UI]
  
 FROM microsoft/nanoserver
 
@@ -22,7 +22,7 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
 ADD http://apache.claz.org/lucene/solr/6.4.1/solr-6.4.1.zip C:\\solr
 #Unzip the main archive
 #Solr is so large it needs 7zip to unzip and not error
-RUN  powershell -Command  "Expand-7Zip C:\\solr\\solr-6.4.0.zip"
+RUN  powershell -Command  "Expand-7Zip C:\\solr\\solr-6.4.1.zip"
   
 #Cleanup
 RUN rm  C:\\solr\\solr-6.4.0.zip  
