@@ -41,7 +41,7 @@ COPY conf/managed-schema c:/solr/solr-6.4.1/example/appleseed-search/solr/apples
 EXPOSE 8983 
 
 #Turn Solr to startup when the container starts
-CMD powershell -Command  "c:\\solr\\solr-6.4.0\\bin\\solr.cmd start -p 8983 -f -s c:\\solr\\solr-6.4.0\\example\\appleseed-search\\solr -V"
+CMD powershell -Command  "c:\\solr\\solr-6.4.1\\bin\\solr.cmd start -p 8983 -f -s c:\\solr\\solr-6.4.1\\example\\appleseed-search\\solr -V"
 
 
  
