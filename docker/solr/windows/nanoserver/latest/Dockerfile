@@ -29,14 +29,14 @@ RUN rm  C:\\solr\\solr-6.4.1.zip
 
 #Add Core | Copy Required Example files for Core to start
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/appleseed-search.core.zip C:\\solr
-RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\solr\\appleseed-search.core.zip' -DestinationPath 'c:\\solr\\solr-6.4.0\\example'" ;\
+RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'C:\\solr\\appleseed-search.core.zip' -DestinationPath 'c:\\solr\\solr-6.4.1\\example'" ;\
     rm C:\\solr\\appleseed-search.core.zip ;\
-    cp c:\\solr\\solr-6.4.0\\example\\example-DIH\\solr\\solr\\conf\\xslt c:\\solr\\solr-6.4.0\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
-    cp c:\\solr\\solr-6.4.0\\example\\example-DIH\\solr\\solr\\conf\\clustering c:\\solr\\solr-6.4.0\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
-    cp c:\\solr\\solr-6.4.0\\example\\example-DIH\\solr\\solr\\conf\\lang\\stopwords_ckb.txt c:\\solr\\solr-6.4.0\\example\\appleseed-search\\solr\\appleseed-public\\conf\\lang ;\
-    cp c:\\solr\\solr-6.4.0\\example\\example-DIH\\solr\\solr\\conf\\solrconfig.xml c:\\solr\\solr-6.4.0\\example\\appleseed-search\\solr\\appleseed-public\\conf
+    cp c:\\solr\\solr-6.4.1\\example\\example-DIH\\solr\\solr\\conf\\xslt c:\\solr\\solr-6.4.1\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
+    cp c:\\solr\\solr-6.4.1\\example\\example-DIH\\solr\\solr\\conf\\clustering c:\\solr\\solr-6.4.1\\example\\appleseed-search\\solr\\appleseed-public\\conf ;\
+    cp c:\\solr\\solr-6.4.1\\example\\example-DIH\\solr\\solr\\conf\\lang\\stopwords_ckb.txt c:\\solr\\solr-6.4.1\\example\\appleseed-search\\solr\\appleseed-public\\conf\\lang ;\
+    cp c:\\solr\\solr-6.4.1\\example\\example-DIH\\solr\\solr\\conf\\solrconfig.xml c:\\solr\\solr-6.4.1\\example\\appleseed-search\\solr\\appleseed-public\\conf
 
-COPY conf/managed-schema c:/solr/solr-6.4.0/example/appleseed-search/solr/appleseed-public/conf
+COPY conf/managed-schema c:/solr/solr-6.4.1/example/appleseed-search/solr/appleseed-public/conf
 
 EXPOSE 8983 
 
