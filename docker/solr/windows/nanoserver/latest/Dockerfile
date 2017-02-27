@@ -25,7 +25,7 @@ ADD http://apache.claz.org/lucene/solr/6.4.1/solr-6.4.1.zip C:\\solr
 RUN  powershell -Command  "Expand-7Zip C:\\solr\\solr-6.4.1.zip"
   
 #Cleanup
-RUN rm  C:\\solr\\solr-6.4.0.zip  
+RUN rm  C:\\solr\\solr-6.4.1.zip  
 
 #Add Core | Copy Required Example files for Core to start
 ADD https://github.com/Appleseed/portal-stack/releases/download/v1.2.0.0/appleseed-search.core.zip C:\\solr
