@@ -19,7 +19,7 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
    setx /M JAVA_HOME 'C:\\Java\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64' 
   
 # ADD Solr 6.4.1
-ADD http://apache.claz.org/lucene/solr/6.4.1/solr-6.4.1.zip C:\\solr
+ADD http://archive.apache.org/dist/lucene/solr/6.4.1/solr-6.4.1.zip C:\\solr
 #Unzip the main archive
 #Solr is so large it needs 7zip to unzip and not error
 RUN  powershell -Command  "Expand-7Zip C:\\solr\\solr-6.4.1.zip"
