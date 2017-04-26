@@ -22,16 +22,14 @@ RUN powershell -executionpolicy bypass -Command "expand-archive -Path 'c:\\Java\
     setx /M JAVA_HOME 'C:\\Java\\java-1.8.0-openjdk-1.8.0.91-3.b14.windows.x86_64' ;\
     rm c:\\Java\\java.1.8.zip
      
-#ADD Cassandra 3.9
+#ADD Cassandra 3.10
 ADD http://apache.mirrors.ionfish.org/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz C:\\cassandra\\cassandra.3.10.gz
 
 #Unzip the main archive
 RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.10.gz -Remove 1"  
      # Currently Cassandra has an issue with their archive.  Extraction Only works after the container is running
-     #powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.9 -Remove 1" 
-     #powershell -Command  "Expand-7Zip C:\\cassandra\\apache-cassandra-3.9-biyn.tar\\apache-cassandra-3.9-bin"
-
  
+
 #7000	Cassandra inter-node cluster communication.
 #7001	Cassandra SSL inter-node cluster communication.
 #7199	Cassandra JMX monitoring port.
@@ -39,6 +37,6 @@ RUN  powershell -Command  "Expand-7Zip C:\\cassandra\\cassandra.3.10.gz -Remove 
 EXPOSE 7000 7001 7199 8888
  
 #To-do :Use the below command once Cassandra Archive issues are resolved
-#CMD powershell -Command "c:\\cassandra\\apache-cassandra-3.9\\bin\\cassandra.bat"
+#CMD powershell -Command "c:\\cassandra\\apache-cassandra-3.10\\bin\\cassandra.bat"
 # leaving ping hook until gz archive is resolved
 CMD powershell -Command  ping -t localhost
