@@ -1,4 +1,4 @@
-FROM mono:latest
+FROM mono:4.8.0.54
 
 MAINTAINER Rahul Singh <rahul.singh@anant.us>
 
